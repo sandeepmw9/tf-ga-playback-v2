@@ -4,8 +4,7 @@ on:
     inputs:
       logging:
         description: enable logging
-        required: true
-        default: ""
+        required: false
         type: string
         options:
           - TRACE
