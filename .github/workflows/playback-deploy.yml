@@ -17,7 +17,7 @@ jobs:
       - name: aws intergation using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::736218978384:role/github-oidc-full-perms #can be set as secrets in github
+          role-to-assume: ${{ secrets.OIDC_ARN}} #oidc
           aws-region: ap-south-1
       - name: install ssh_key_pair
         run: ssh-keygen -t rsa -N "" -f "ec2_login_key"
@@ -33,7 +33,7 @@ jobs:
         run: tflint --init
         env:
         # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
 
       - name: Run TFLint
         run: tflint -f compact
