@@ -18,10 +18,10 @@
 #   filename = "ec2_login_key"
 # }
 
-resource "random_string" "suffix" {
-  length  = 8
-  special = false
-}
+# resource "random_string" "suffix" {
+#   length  = 8
+#   special = false
+# }
 
 # resource "aws_instance" "ec2_instance" {
 #   depends_on                  = [aws_key_pair.ec2_login_key] #depends on block for handling failures due to resource dependency
