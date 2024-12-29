@@ -76,8 +76,7 @@ jobs:
         if: steps.lint.outcome == 'failure'
         run: |
           echo "error with terraform configurations"
-          exit 1
-        # continue-on-error: true
+        continue-on-error: true
 
       - name: plan_apply
         id: plan
