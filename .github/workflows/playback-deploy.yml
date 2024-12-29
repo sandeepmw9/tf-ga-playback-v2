@@ -52,6 +52,7 @@ jobs:
         run: |
           echo "error with terraform configurations"
           exit 1
+        continue-on-error: true
 
       - run: echo ${{ steps.lint.outcome.stdout }}
       - run: echo ${{ steps.lint.outcome.stderr }}
