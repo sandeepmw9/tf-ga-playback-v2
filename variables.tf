@@ -30,7 +30,7 @@ variable "allowed_ports" {
 }
 
 variable "instance_type" {
-  default = "t3.micro"
+  default = "t2.micro"
 
   validation {
     condition     = contains(["t2.micro", "t2.small", "t3.medium"], var.instance_type)
