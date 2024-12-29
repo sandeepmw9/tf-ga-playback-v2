@@ -1,6 +1,19 @@
 name: provision and deploy
 on:
   workflow_dispatch:
+    inputs:
+      logging:
+        description: enabling logging for analysis
+        required: true
+        default: ''
+        type: string
+        options:
+          - TRACE
+          - DEBUG
+          - INFO
+          - WARN
+          - ERROR
+
 jobs:
   provision-infra:
     permissions:
@@ -26,6 +39,7 @@ jobs:
       - name: initialize & format
         id: init
         run: |
+          export TF_LOG=${{ github.event.logging }}
           terraform init
           terraform fmt
         continue-on-error: true
