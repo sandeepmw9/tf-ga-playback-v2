@@ -1,5 +1,5 @@
 data "aws_availability_zones" "available" {}
-data "aws_region" "current" {}
+# data "aws_region" "current" {}
 
 resource "aws_vpc" "lab4_vpc" {
   cidr_block = var.cidr
@@ -58,7 +58,7 @@ resource "aws_route_table_association" "public" {
 
 
 resource "aws_security_group" "lab4_sg" {
-  
+
   vpc_id = aws_vpc.lab4_vpc.id
   dynamic "ingress" {
     for_each = var.allowed_ports
