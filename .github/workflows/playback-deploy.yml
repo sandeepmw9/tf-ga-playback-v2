@@ -22,10 +22,18 @@ jobs:
       - name: install ssh_key_pair
         run: ssh-keygen -t rsa -N "" -f "ec2_login_key"
 
-      - uses: terraform-linters/setup-tflint@v4
-        name: Setup TFLint
+      - name: initialize&format
+        id: init
+        run: |
+          terraform init
+          terraform fmt
+        continue-on-error: true
+      
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4
         with:
           tflint_version: v0.52.0
+
       - name: Show version
         run: tflint --version
 
@@ -37,13 +45,7 @@ jobs:
 
       - name: Run TFLint
         run: tflint -f compact
-
-      - name: initialize&format
-        id: init
-        run: |
-          terraform init
-          terraform fmt
-        continue-on-error: true
+        
       - name: plan_apply
         id: plan
         run: terraform plan -out myplan
