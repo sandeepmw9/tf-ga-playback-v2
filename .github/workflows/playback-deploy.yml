@@ -48,14 +48,14 @@ jobs:
         run: tflint -f compact
         continue-on-error: true
       - name: Retry TFLint
-        if: steps.lint.oucome == 'failure'
+        if: steps.lint.outcome == 'failure'
         run: |
           echo "error with terraform configurations"
           exit 1
 
-      - run: echo ${{ steps.lint.outputs.stdout }}
-      - run: echo ${{ steps.lint.outputs.stderr }}
-      - run: echo ${{ steps.lint.outputs.exitcode }}
+      - run: echo ${{ steps.lint.outcome.stdout }}
+      - run: echo ${{ steps.lint.outcome.stderr }}
+      - run: echo ${{ steps.lint.outcome.exitcode }}
 
       # - name: plan_apply
       #   id: plan
