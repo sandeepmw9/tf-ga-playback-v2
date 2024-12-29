@@ -33,6 +33,7 @@ jobs:
       - name: check code validation
         id: validation
         run: terraform validate
+        continue-on-error: true
 
       - name: check validation condition
         if: steps.validation.outcome == 'failure'
