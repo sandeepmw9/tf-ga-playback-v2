@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
     inputs:
       logging:
-        description: enabling logging for analysis
+        description: enable logging
         required: true
-        default: ''
+        default: ""
         type: string
         options:
           - TRACE
@@ -39,7 +39,7 @@ jobs:
       - name: initialize & format
         id: init
         run: |
-          export TF_LOG=${{ github.event.logging }}
+          export TF_LOG=${{ inputs.logging }}
           terraform init
           terraform fmt
         continue-on-error: true
