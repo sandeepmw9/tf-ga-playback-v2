@@ -44,8 +44,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.G_TOKEN }}
 
       - name: Run TFLint
+        id: lint
         run: tflint -f compact
-        
+        continue-on-error: true
+      - name: Retry TFLint
+        if: steps.lint.oucome == 'failure'
+        run: |
+          echo "error with terraform configurations"
+          exit 1
+          
       - name: plan_apply
         id: plan
         run: terraform plan -out myplan
