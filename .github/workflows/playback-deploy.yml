@@ -5,7 +5,7 @@ on:
       logging:
         description: enable logging
         required: false
-        type: string
+        type: choice
         options:
           - TRACE
           - DEBUG
